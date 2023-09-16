@@ -1,51 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import ButtonCounter from './components/ButtonCounter';
+import TextInputDynamic from './components/TextInputDynamic'
+import ChangeButtonColor from './components/ChangeButtonColor'
+import TextAlert from './components/TextAlert'
 import { StyleSheet,
   Text,
   View,
-  Alert,
-  Button,
-  TouchableHighlight,
-  TouchableOpacity,
+  ScrollView,
  } from 'react-native';
 
 export default function App() {
-  const [buttonColor, setButtonColor] = useState("#02C39A"); // Initial color
-  const handleTextPress = ()=>{
-    Alert.alert("It's possible, isn't it?", "Press OK please",[{
-      text: "OK",
-      onPress: ()=> console.log("Closed")
-    }
-    ]);
-  }
-  const handleButtonPress = ()=>{
-    const randomColor = '#' + ((Math.random() * 0xffffff) << 0).toString(16);
-    setButtonColor(randomColor);
-    console.log(randomColor);
-  }
+  const data = [{"name": "Anton"},{"name":"Dima"},{"name":"Sasha"},{"name":"Alina"},{"name": "Yuliia"},{"name":"Mira"},{"name":"Danil"},{"name":"Andrii"},{"name": "Maxim"},{"name":"Serhii"},{"name":"Oleg"},{"name":"Yaroslav"}]
+  
   return (
+    <ScrollView >
     <View style={styles.container}>
     <StatusBar style="auto" />
-      <TouchableHighlight 
-      activeOpacity={0.5} 
-      nderlayColor={"#05668D"}
-      onPress={handleTextPress}
-      >
-        <Text numberOfLines={1} style={styles.text}>
-          You can click me
-        </Text>  
-      </TouchableHighlight>
-      <TouchableOpacity 
-      style={[styles.button, { backgroundColor: buttonColor }]}
-      onPress={handleButtonPress}
-      >
-        <Text style = {styles.buttonText}>  
-          Change color
-        </Text>
-      </TouchableOpacity>
+      <TextAlert/>
+      <ChangeButtonColor/>
       <ButtonCounter/>
+      {data.map((value,index)=>(<Text key={index} style={styles.dataText}>
+        {value.name}
+      </Text>))}
+      <TextInputDynamic></TextInputDynamic>
     </View>
+    </ScrollView>
   );
 }
 
@@ -56,19 +36,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text:{
-    color: "#F0F3BD",
-    fontSize: 18,
-    margin: 15
-  },
-  button:{
-    backgroundColor: "#02C39A",
-    padding: 10,
-    borderRadius: 5,
-  },
-  buttonText: {
-    fontSize: 18,
-    color: "#F0F3BD",
 
+  dataText:{
+    color: "#F0F3BD",
+    fontSize: 32,
+    margin: 10,
+    textDecorationLine: 'underline',
   },
 });
