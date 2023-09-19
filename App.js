@@ -1,31 +1,70 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import ButtonCounter from './components/ButtonCounter';
-import TextInputDynamic from './components/TextInputDynamic'
-import ChangeButtonColor from './components/ChangeButtonColor'
-import TextAlert from './components/TextAlert'
+import Task from "./components/Task.js"
 import { StyleSheet,
   Text,
   View,
   ScrollView,
+  KeyboardAvoidingView,
+  Keyboard,
+  TextInput,
+  TouchableOpacity,
  } from 'react-native';
 
 export default function App() {
-  const data = [{"name": "Anton"},{"name":"Dima"},{"name":"Sasha"},{"name":"Alina"},{"name": "Yuliia"},{"name":"Mira"},{"name":"Danil"},{"name":"Andrii"},{"name": "Maxim"},{"name":"Serhii"},{"name":"Oleg"},{"name":"Yaroslav"}]
-  
+  const [task, setTask] = useState();
+  const [taskItems, setTaskItems] = useState([]);
+ 
+
+  const handleAddTask = () => {
+    Keyboard.dismiss();
+    setTaskItems([...taskItems, task])
+    setTask(null);
+    console.log("added");
+  }
+  const deleteTask = (index) => {
+    let itemsCopy = [...taskItems];
+    itemsCopy.splice(index, 1);
+    setTaskItems(itemsCopy);
+    console.log("deleted");
+  }
   return (
-    <ScrollView >
     <View style={styles.container}>
-    <StatusBar style="auto" />
-      <TextAlert/>
-      <ChangeButtonColor/>
-      <ButtonCounter/>
-      {data.map((value,index)=>(<Text key={index} style={styles.dataText}>
-        {value.name}
-      </Text>))}
-      <TextInputDynamic></TextInputDynamic>
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1
+        }}
+        keyboardShouldPersistTaps='handled'
+      >
+
+      <View style={styles.tasksWrapper}>
+        <Text style={styles.sectionTitle}>Today's tasks</Text>
+        <View style={styles.items}>
+          {
+            taskItems.map((item, index) => {
+              return (
+                <TouchableOpacity key={index}>
+                  <Task text={item}  onDelete={() => deleteTask(index)} /> 
+                </TouchableOpacity>
+              )
+            })
+          }
+        </View>
+      </View>
+</ScrollView>
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.writeTaskWrapper}
+      >
+        <TextInput style={styles.input} placeholder={'Write a task'}  value={task} onChangeText={text => setTask(text)}/>
+        <TouchableOpacity onPress={() => handleAddTask()}>
+          <View style={styles.addWrapper}>
+            <Text style={styles.addText}>+</Text>
+          </View>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
+      
     </View>
-    </ScrollView>
   );
 }
 
@@ -33,14 +72,52 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#028090',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
-  dataText:{
-    color: "#F0F3BD",
-    fontSize: 32,
-    margin: 10,
-    textDecorationLine: 'underline',
+  tasksWrapper: {
+    paddingTop: 80,
+    paddingHorizontal: 20,
+    marginBottom: 100,
   },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: "#F0F3BD",
+  },
+  items: {
+    marginTop: 30,
+    
+  },
+  writeTaskWrapper: {
+    position: 'absolute',
+    bottom: 30,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+  input: {
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    backgroundColor: '#FFF',
+    borderRadius: 60,
+    borderColor: '#C0C0C0',
+    borderWidth: 1,
+    width: 250,
+  },
+  addWrapper: {
+    width: 60,
+    height: 60,
+    backgroundColor: '#1EC21B',
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 5,
+  },
+  addText:{
+    color:"#FFFFFF",
+    transform:  [{ scaleX: 2 }, { scaleY: 2 }],
+    fontSize : 25,
+  }
+ 
 });
