@@ -7,7 +7,7 @@ import { StyleSheet,
   TextInput
  } from 'react-native';
 
-export default function ButtonCounter() {
+export default function TextInputDynamic() {
     const [text, setText] = useState("Hello!"); 
     const handleInput =(text) =>{
         setText(text);

@@ -6,7 +6,7 @@ import { StyleSheet,
   View,
  } from 'react-native';
 
-export default function ButtonCounter() {
+export default function TextAlert() {
     const handleTextPress = ()=>{
         Alert.alert("It's possible, isn't it?", "Press OK please",[{
           text: "OK",

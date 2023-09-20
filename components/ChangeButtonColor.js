@@ -5,7 +5,7 @@ import { StyleSheet,
   View,
  } from 'react-native';
 
-export default function ButtonCounter() {
+export default function ChangeButtonColor() {
     const [buttonColor, setButtonColor] = useState("#02C39A"); // Initial color
     const handleButtonPress = ()=>{
         const randomColor = '#' + ((Math.random() * 0xffffff) << 0).toString(16);
