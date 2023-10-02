@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 
  },
  container_title:{
-    flex: 0.79, 
+    flex: 0.8, 
     alignItems:'center',
     justifyContent:'center',
 },
