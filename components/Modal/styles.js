@@ -82,9 +82,9 @@ crossWrapper:{
     fontWeight: 'bold',
     fontSize: 16,
     transform: [{ scaleX: 2 }, { scaleY: 1.6 }],
-    textShadowColor: 'black',  
-    textShadowOffset: { width: 1, height: 1 }, 
-    textShadowRadius: 3, 
+    textShadowColor: 'white',  
+    textShadowOffset: { width: 0.3, height: 0.3 }, 
+    textShadowRadius: 1, 
   },
  
 });

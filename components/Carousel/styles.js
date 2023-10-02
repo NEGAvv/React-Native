@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.6,
-    backgroundColor: '#6A381F',
+    flex: 1,
+    backgroundColor: '#rgba(255,255,255, 1)',
     alignItems: 'center', 
     justifyContent: 'center', 
     marginTop: 25,
@@ -14,6 +14,19 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: 'center', 
     marginTop: 25,
+  },
+  container_slider:{
+    flex: 0.5,
+    flexDirection: 'row',
+    height: 64,
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  container_button:{
+    flex: 0.7,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 50,
   },
  image:{
     flex: 0.7,
@@ -47,6 +60,19 @@ const styles = StyleSheet.create({
     textShadowColor: '#8C8C8C',  
     textShadowOffset: { width: 1, height: 1}, 
     textShadowRadius: 3,
+ },
+ dot:{
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'black',
+    marginHorizontal: 8,
+ },
+ next_button: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    borderRadius: 100,
+    padding: 27.5,
+    paddingVertical: 30.5
  },
 });
 
