@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 
  },
  container_title:{
-    flex: 0.8, 
+    flex: 1, 
     alignItems:'center',
     justifyContent:'center',
 },
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
  price:{
     fontSize: 20,
     textAlign: 'center',
-    marginTop: -12,
+    marginTop: -10,
     marginRight: 5,
     paddingRight: 5,
     color: '#000000',
