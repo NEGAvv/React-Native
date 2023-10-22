@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-import Modal from './components/Modal/Modal.js'
-import Carousel from './components/Carousel/Carousel.js'
-import { View,StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen/HomeScreen.js'
+import ContactsScreen from './screens/ContactsScreen/ContactsScreen.js'
+import GalleryScreen from './screens/GalleryScreen/GalleryScreen.js'
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Modal/>
-      <Carousel/>
-    </View>
-      
+  <NavigationContainer>
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Contacts" component={ContactsScreen} />
+      <Stack.Screen name="Gallery" component={GalleryScreen} />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    alignItems: 'flex-start', 
-    justifyContent: 'flex-start', 
-  },})
+  
+})
