@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet, Animated, Easing, TouchableOpacity, ScrollView, Image } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView,  } from "react-native";
 import React, { useEffect } from 'react';
 import styles from "./styles";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,7 +6,6 @@ import {
   buyCrypto,
   decrementCrypto,
   incrementCrypto,
-  unCheckCrypto,
 } from "../../store/slices/cryptoSlice.js";
 
 const HomeScreen = ({ navigation }) => {
