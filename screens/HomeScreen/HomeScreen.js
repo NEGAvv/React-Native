@@ -1,42 +1,48 @@
-import { View, Text, Button, StyleSheet, Animated, Easing, TouchableOpacity, ScrollView, Image } from "react-native";
-import React, { useEffect } from 'react';
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  Animated,
+  Easing,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+} from "react-native";
+import React, { useEffect } from "react";
 import styles from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import {
   buyCrypto,
   decrementCrypto,
   incrementCrypto,
-  unCheckCrypto,
 } from "../../store/slices/cryptoSlice.js";
 
 const HomeScreen = ({ navigation }) => {
-  const cryptos = useSelector((state) =>
-     state.cryptos
-  );
+  const cryptos = useSelector((state) => state.cryptos);
   const buyPrice = cryptos.reduce(
     (total, crypto) => total + crypto.amountToBuy * crypto.dollarCurrency,
     0
   );
   const dispatch = useDispatch();
 
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-          <Text style={styles.headerText}>Welcome to market of crypto currencies</Text>
+        <Text style={styles.headerText}>
+          Welcome to market of crypto currencies
+        </Text>
       </View>
       <View style={styles.main}>
         <ScrollView>
           {cryptos.map((item) => (
             <View style={styles.itemContainer} key={item.id}>
-              
               <View>
                 <Text style={styles.itemName}>{item.name}</Text>
-               
+
                 <Text style={styles.itemCurrency}>${item.dollarCurrency}</Text>
-                
               </View>
-              
+
               <View style={styles.shopButtons}>
                 <TouchableOpacity
                   style={{
@@ -48,7 +54,9 @@ const HomeScreen = ({ navigation }) => {
                 </TouchableOpacity>
 
                 <View>
-                  <Text Text style={{ fontSize: 20 }}>{item.amountToBuy}</Text>
+                  <Text Text style={{ fontSize: 20 }}>
+                    {item.amountToBuy}
+                  </Text>
                 </View>
 
                 <TouchableOpacity
@@ -74,7 +82,6 @@ const HomeScreen = ({ navigation }) => {
       </View>
     </View>
   );
-  
 };
 
 export default HomeScreen;
